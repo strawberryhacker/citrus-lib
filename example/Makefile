@@ -42,16 +42,12 @@ ASMFLAGS += -mcpu=cortex-a5 -mfpu=vfpv4-d16 -mfloat-abi=hard
 .PHONY: all elf bin lss clean 
 
 # Rebuild the library first
-all: lib elf lss bin
+all: elf lss bin
 
 # Subtargets
 elf: $(BUILDDIR)/$(TARGET_NAME).elf
 lss: $(BUILDDIR)/$(TARGET_NAME).lss
 bin: $(BUILDDIR)/$(TARGET_NAME).bin
-
-lib:
-	@cd $(TOP)/../stdlib && $(MAKE) -s clean && $(MAKE) -s
-	@echo
 
 $(BUILDDIR)/%.elf: $(BUILDOBJ)
 	@echo
