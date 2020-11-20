@@ -1,4 +1,5 @@
 # Copyright (C) strawberryhacker
 
-OBJ += src/citrus.o
 OBJ += src/syscall.o
+OBJ += src/cthread.o
+OBJ += src/cmalloc.o

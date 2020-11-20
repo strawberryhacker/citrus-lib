@@ -6,26 +6,24 @@
 #define SYSCALL_CREATE_THREAD 1
 #define SYSCALL_SBRK          2
 
-#define SYSCALL_NX(x)      \
-    asm volatile (         \
-        "svc #"#x"  \t\n"  \
-        "bx lr      \n\t"  \
-    );
+#define __syscall_tmp(x)          \
+    asm volatile ("svc #"#x"\n"); \
+    asm volatile ("bx lr");
 
-#define SYSCALL(x) SYSCALL_NX(x)
+#define __syscall(x) __syscall_tmp(x)
 
-void SVC_ATTR syscall_sleep(u32 us)
+void __swi syscall_sleep(u32 us)
 {
-    SYSCALL(SYSCALL_SLEEP);
+    __syscall(SYSCALL_SLEEP);
 }
 
-i8 SVC_ATTR syscall_create_thread(i8 (*func)(void *), u32 stack_size,
-    const char* name, void* args, u32 flags)
+i32 __swi syscall_create_thread(pid_t* pid, i32 (*func)(void *), u32 stack_size,
+    const char* name, void* arg, u32 flags)
 {
-    SYSCALL(SYSCALL_CREATE_THREAD);
+    __syscall(SYSCALL_CREATE_THREAD);
 }
 
-u32 SVC_ATTR syscall_sbrk(u32 bytes)
+u32 __swi syscall_sbrk(u32 bytes)
 {
-    SYSCALL(SYSCALL_SBRK);
+    __syscall(SYSCALL_SBRK);
 }

@@ -1,7 +1,7 @@
 /// Copyright (C) strawberryhacker 
 
-#ifndef TYPES_H
-#define TYPES_H
+#ifndef CTYPES_H
+#define CTYPES_H
 
 /// This file defines the types that should be used in the project
 
