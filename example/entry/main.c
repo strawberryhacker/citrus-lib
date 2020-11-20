@@ -1,8 +1,9 @@
 // Copyright (C) strawberryhacker
 
-#include <citrus.h>
 #include <regmap.h>
 #include <stddef.h>
+#include <ctypes.h>
+#include <cthread.h>
 
 void print(const char* data)
 {
@@ -12,7 +13,7 @@ void print(const char* data)
     }
 }
 
-i8 thread(void* arg)
+i32 thread(void* arg)
 {
     while (1) {
         print("CHILD THREAD\n");
@@ -20,9 +21,9 @@ i8 thread(void* arg)
     }
 }
 
-i8 main(void* arg)
+i32 main(void* arg)
 {
-    create_thread(thread, 500, "child-thread", NULL, SCHED_RT);
+    //create_cthread(thread, 500, "child-thread", NULL, SCHED_RT);
     
     while (1) {
         print("------------------------------\n");

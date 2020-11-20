@@ -3,7 +3,7 @@
 #ifndef REGMAP_H
 #define REGMAP_H
 
-#include <types.h>
+#include <ctypes.h>
 
 // Types used for registers 
 #define __r volatile const

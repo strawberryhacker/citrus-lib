@@ -1,6 +1,6 @@
 /// Copyright (C) strawberryhacker
 
-#include <citrus.h>
+#include <ctypes.h>
 
 extern u32 _bss_s;
 extern u32 _bss_e;
